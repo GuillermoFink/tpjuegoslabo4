@@ -1,8 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import {SplitButtonModule} from 'primeng/splitbutton';
-import {ButtonModule} from 'primeng/button';
+import { PrimengModule } from './modulos/primeng/primeng.module';
 import { HttpModule } from '@angular/http';
 import { RouterModule,Route,Routes } from '@angular/router';
 
@@ -51,10 +50,9 @@ const config: Routes = [
   ],
   imports: [
     BrowserModule,
-    SplitButtonModule,
-    ButtonModule,
+    PrimengModule,
     HttpModule,
-    RouterModule.forRoot(config),
+    RouterModule.forRoot(config)
   ],
   providers: [],
   bootstrap: [AppComponent]
