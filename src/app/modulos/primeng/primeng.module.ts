@@ -9,13 +9,15 @@ import {MessagesModule} from 'primeng/messages';
     CommonModule,
     SplitButtonModule,
     ButtonModule,
-    MessageModule,MessagesModule
+    MessageModule,
+    MessagesModule
   ],
   exports: [
     CommonModule,
     SplitButtonModule,
     ButtonModule,
-    MessageModule,MessagesModule
+    MessageModule,
+    MessagesModule
   ],
   declarations: []
 })
