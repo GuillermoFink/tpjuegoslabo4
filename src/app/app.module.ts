@@ -13,6 +13,7 @@ import { HomeComponent } from './componentes/home/home.component';
 import { AnagramaComponent } from './componentes/anagrama/anagrama.component';
 import { QuizzComponent } from './componentes/quizz/quizz.component';
 import { PuntajesComponent } from './componentes/puntajes/puntajes.component';
+import { LoginComponent } from './componentes/login/login.component';
 
 const config: Routes = [
   {
@@ -46,6 +47,7 @@ const config: Routes = [
     AnagramaComponent,
     QuizzComponent,
     PuntajesComponent,
+    LoginComponent,
     
   ],
   imports: [
