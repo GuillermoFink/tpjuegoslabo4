@@ -1,3 +1,46 @@
-<p>
-  home works!
-</p>
+<div class="ui-g">
+  <div class="ui-g-12">
+    <app-menu></app-menu>
+  </div>
+  <div class="ui-g">
+  <div class="ui-g-4">
+    <p-card title="Piedra Papel o Tijera" subtitle="Piedra Papel o Tijera" [style]="{width: '360px'}" styleClass="ui-card-shadow">
+      <p-header>
+        <img src="Card" src="../../../assets/Imagenes/ppt.jpg">
+      </p-header>
+      <div>Clasico juego de la infancia, ¿Preparado para jugar con el azar?</div>
+      <p-footer>
+        <button pButton type="button" label="Jugar!" icon="fa-check"></button>
+        <button pButton type="button" label="Mis estadisticas" icon="fa-bar-chart" class="ui-button-warning"></button>
+        <button pButton type="button" icon="fa-info" class="ui-button-info" (click)="infoPpt()"></button>
+      </p-footer>
+    </p-card>
+  </div>
+  <div class="ui-g-4">
+    <p-card title="Adivina el numero" subtitle="Adivina el numero" [style]="{width: '360px'}" styleClass="ui-card-shadow">
+      <p-header>
+        <img src="Card" src="../../../assets/Imagenes/adivina_numero.jpg">
+      </p-header>
+      <div>Ponte los anteojos y el sombrero del Dr. Gadjet y adivina el numero oculto!!</div>
+      <p-footer class="ui-center">
+        <button pButton type="button" label="Jugar!" icon="fa-check"></button>
+        <button pButton type="button" label="Mis estadisticas" icon="fa-bar-chart" class="ui-button-warning"></button>
+        <button pButton type="button" icon="fa-info" class="ui-button-info"></button>
+      </p-footer>
+    </p-card>
+  </div>
+  <div class="ui-g-4">
+    <p-card title="Quizz!" subtitle="Quizz!" [style]="{width: '360px'}" styleClass="ui-card-shadow">
+      <p-header>
+        <img src="Card" src="../../../assets/Imagenes/Quizz.jpg">
+      </p-header>
+      <div>Entretenido juego de preguntas y respuestas, de contenido deportivo e interes general</div>
+      <p-footer>
+        <button pButton type="button" label="Jugar!" icon="fa-check"></button>
+        <button pButton type="button" label="Mis estadisticas" icon="fa-bar-chart" class="ui-button-warning"></button>
+        <button pButton type="button" icon="fa-info" class="ui-button-info"></button>
+      </p-footer>
+    </p-card>
+  </div>
+</div>
+</div>

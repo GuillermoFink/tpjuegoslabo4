@@ -1,9 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { PrimengModule } from './modulos/primeng/primeng.module';
 import { HttpModule } from '@angular/http';
-import { RouterModule,Route,Routes } from '@angular/router';
+import { RouterModule, Route, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
@@ -18,25 +18,32 @@ import { LoginComponent } from './componentes/login/login.component';
 
 const config: Routes = [
   {
-    path:"",
-    component: HomeComponent
+    path: "",
+    component: LoginComponent
   },
   {
-    path:"ppt",
-    component: PiedraPapelTijeraComponent
-  },
-  {
-    path: "anagrama",
-    component: AnagramaComponent
-  },
-  {
-    path: "quizz",
-    component: QuizzComponent
-  },
-  {
-    path: "puntajes",
-    component: PuntajesComponent
+    path: "home",
+    component: HomeComponent,
+    children: [
+      {
+        path: "ppt",
+        component: PiedraPapelTijeraComponent
+      },
+      {
+        path: "anagrama",
+        component: AnagramaComponent
+      },
+      {
+        path: "quizz",
+        component: QuizzComponent
+      },
+      {
+        path: "puntajes",
+        component: PuntajesComponent
+      }
+    ]
   }
+
 ]
 @NgModule({
   declarations: [
@@ -49,8 +56,8 @@ const config: Routes = [
     QuizzComponent,
     PuntajesComponent,
     LoginComponent,
-    
-    
+
+
   ],
   imports: [
     BrowserModule,
