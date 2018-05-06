@@ -7,7 +7,7 @@ import swal from 'sweetalert2';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  ppt: boolean = false;
   constructor() { }
 
   ngOnInit() {
@@ -18,5 +18,8 @@ export class HomeComponent implements OnInit {
       imageHeight: 300,
       imageAlt: 'Instrucciones'
     })
+  }
+  juegarppt(){
+    this.ppt = true;
   }
 }

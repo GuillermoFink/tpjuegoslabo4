@@ -1,1 +1,64 @@
-<p-button (click)="test()">HOLA</p-button>
+<p-growl [(value)]="msgs"></p-growl>
+<p-table class="w3-center">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Jugador</th>
+            <th>Resultado</th>
+            <th>Maquina</th>
+        </tr>
+        <tr>
+
+            <td (click)="Jugada(1)">
+                <button class="w3-button w3-white w3-border w3-border-blue">
+                    <img src="../../../assets/Imagenes/piedra.jpg" class="w3-hover-sepia w3-round-xxlarge">
+                </button>
+            </td>
+            <td></td>
+            <td>
+                <img src="../../../assets/Imagenes/piedra.jpg" id='pcPiedra'>
+            </td>
+        </tr>
+        <tr>
+            <td (click)="Jugada(2)">
+                <button class="w3-button w3-white w3-border w3-border-blue">
+                    <img src="../../../assets/Imagenes/papel.jpg" class="w3-hover-sepia w3-round-xxlarge">
+                </button>
+            </td>
+            <td>{{mensaje}}</td>
+            <td>
+                <img src="../../../assets/Imagenes/papel.jpg" id='pcPapel'>
+            </td>
+        </tr>
+        <tr>
+            <td (click)="Jugada(3)">
+                <button class="w3-button w3-white w3-border w3-border-blue">
+                    <img src="../../../assets/Imagenes/tijera.jpg" class="w3-hover-sepia w3-round-xxlarge">
+                </button>
+            </td>
+            <td></td>
+            <td>
+                <img src="../../../assets/Imagenes/tijera.jpg" id='pcTijera'>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+<p-table class="w3-center">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Jugados</th>
+            <th>Ganados</th>
+            <th>Empatados</th>
+            <th>Perdidos</th>
+            <th>Puntos</th>
+            <th>Porcentaje de Victorias</th>
+        </tr>
+        <tr>
+            <td>{{jugados}}</td>
+            <td>{{ganados}}</td>
+            <td>{{empatados}}</td>
+            <td>{{perdidos}}</td>
+            <td>{{ganados}}</td>
+            <td>%{{porcentaje}}</td>
+        </tr>
+    </ng-template>
+</p-table>

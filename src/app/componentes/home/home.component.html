@@ -10,7 +10,7 @@
       </p-header>
       <div>Clasico juego de la infancia, ¿Preparado para jugar con el azar?</div>
       <p-footer>
-        <button pButton type="button" label="Jugar!" icon="fa-check"></button>
+        <button pButton type="button" label="Jugar!" icon="fa-check" (click)="juegarppt()"></button>
         <button pButton type="button" label="Mis estadisticas" icon="fa-bar-chart" class="ui-button-warning"></button>
         <button pButton type="button" icon="fa-info" class="ui-button-info" (click)="infoPpt()"></button>
       </p-footer>
@@ -43,4 +43,7 @@
     </p-card>
   </div>
 </div>
+</div>
+<div *ngIf="ppt == true">
+  <app-piedra-papel-tijera></app-piedra-papel-tijera>
 </div>
