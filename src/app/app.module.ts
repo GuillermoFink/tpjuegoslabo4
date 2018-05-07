@@ -25,25 +25,23 @@ const config: Routes = [
   },
   {
     path: "home",
-    component: HomeComponent,
-    children: [
-      {
-        path: "ppt",
-        component: PiedraPapelTijeraComponent
-      },
-      {
-        path: "anagrama",
-        component: AnagramaComponent
-      },
-      {
-        path: "quizz",
-        component: QuizzComponent
-      },
-      {
-        path: "puntajes",
-        component: PuntajesComponent
-      }
-    ]
+    component: HomeComponent
+  },
+  {
+    path: "ppt",
+    component: PiedraPapelTijeraComponent
+  },
+  {
+    path: "anagrama",
+    component: AnagramaComponent
+  },
+  {
+    path: "quizz",
+    component: QuizzComponent
+  },
+  {
+    path: "puntajes",
+    component: PuntajesComponent
   }
 
 ]
