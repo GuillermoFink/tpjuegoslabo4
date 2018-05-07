@@ -5,6 +5,8 @@ import { PrimengModule } from './modulos/primeng/primeng.module';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Route, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { Jugador } from './clases/jugador';
+import { JugadorService } from './servicios/jugador.service';
 
 import { AppComponent } from './app.component';
 import { PiedraPapelTijeraComponent } from './componentes/piedra-papel-tijera/piedra-papel-tijera.component';
@@ -66,7 +68,7 @@ const config: Routes = [
     FormsModule,
     RouterModule.forRoot(config)
   ],
-  providers: [],
+  providers: [JugadorService,Jugador],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

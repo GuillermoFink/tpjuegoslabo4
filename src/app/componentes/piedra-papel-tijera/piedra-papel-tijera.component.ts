@@ -3,7 +3,9 @@ import swal from 'sweetalert2';
 import { MessageModule } from 'primeng/message';
 import { GrowlModule, Growl } from 'primeng/growl';
 import { Message } from 'primeng/components/common/api';
-import {TableModule} from 'primeng/table';
+import { TableModule } from 'primeng/table';
+import { JugadorService } from '../../servicios/jugador.service';
+import { HttpModule, Http } from '@angular/http';
 
 
 @Component({
@@ -12,15 +14,26 @@ import {TableModule} from 'primeng/table';
   styleUrls: ['./piedra-papel-tijera.component.css']
 })
 export class PiedraPapelTijeraComponent implements OnInit {
+  nombreJugador: string;
+  apodoJugador: string;
+  idJugador: number;
+  apellidoJugador: string;
   random: number;
-  jugados: number = 0;
-  ganados: number = 0;
-  empatados: number = 0;
-  perdidos: number = 0;
+  jugados: number;
+  ganados: number;
+  empatados: number;
+  perdidos: number;
   porcentaje: number = 0;
   mensaje: string;
   msgs: Message[] = [];
-  constructor() { }
+  constructor(private miJugador: JugadorService, private miHttp: Http) {
+    this.nombreJugador = miJugador.GetNombre();
+    this.apellidoJugador = miJugador.GetApellido();
+    this.apodoJugador = miJugador.GetApodo();
+    this.idJugador = miJugador.GetId();
+    console.log(this.miJugador);
+   this.TraerInformacionDeJuego();
+  }
 
   ngOnInit() {
   }
@@ -37,16 +50,16 @@ export class PiedraPapelTijeraComponent implements OnInit {
     document.getElementById('pcPiedra').classList.remove('w3-grayscale-max');
     document.getElementById('pcPapel').classList.remove('w3-grayscale-max');
     document.getElementById('pcTijera').classList.remove('w3-grayscale-max');
-    switch(this.random){
+    switch (this.random) {
       case 1:
-      document.getElementById('pcPiedra').classList.add('w3-grayscale-max');
-      break;
+        document.getElementById('pcPiedra').classList.add('w3-grayscale-max');
+        break;
       case 2:
-      document.getElementById('pcPapel').classList.add('w3-grayscale-max');
-      break;
+        document.getElementById('pcPapel').classList.add('w3-grayscale-max');
+        break;
       case 3:
-      document.getElementById('pcTijera').classList.add('w3-grayscale-max');
-      break;
+        document.getElementById('pcTijera').classList.add('w3-grayscale-max');
+        break;
     }
     switch (numero) {
       case 1:
@@ -58,12 +71,12 @@ export class PiedraPapelTijeraComponent implements OnInit {
         if (this.random == 2) {
           this.jugados++;
           this.perdidos++;
-          this.mensaje = "Perdiste!";
+          this.mensaje = "Ganador: PC!";
         }
         if (this.random == 3) {
           this.ganados++;
           this.jugados++;
-          this.mensaje = "Ganaste!";
+          this.mensaje = "Ganador: " + this.apodoJugador + "!";
         }
         break;
       case 2:
@@ -80,14 +93,14 @@ export class PiedraPapelTijeraComponent implements OnInit {
         if (this.random == 3) {
           this.perdidos++;
           this.jugados++;
-          this.mensaje = "Perdiste!";
+          this.mensaje = "Ganador: PC!";
         }
         break;
       case 3:
         if (this.random == 1) {
           this.jugados++;
           this.perdidos++;
-          this.mensaje = "Perdiste!";
+          this.mensaje = "Ganador: PC!";
         }
         if (this.random == 2) {
           this.jugados++;
@@ -101,17 +114,14 @@ export class PiedraPapelTijeraComponent implements OnInit {
         }
         break;
     }
+    this.GuardarInformacionJuego();
     this.DesplegarMensaje(this.mensaje);
-    this.porcentaje = Math.round((this.ganados/this.jugados)*100);
+    this.porcentaje = Math.round((this.ganados / this.jugados) * 100);
   }
   DesplegarMensaje(condicion: string) {
     condicion = condicion.trim();
     switch (condicion) {
-      case 'Ganaste!':
-        this.msgs = [];
-        this.msgs.push({ severity: 'success', summary: condicion, detail: 'Sumaste 1 punto!' });
-        break;
-      case 'Perdiste!':
+      case 'Ganador: PC!':
         this.msgs = [];
         this.msgs.push({ severity: 'error', summary: condicion, detail: 'No sumaste esta ronda!' });
         break;
@@ -119,7 +129,33 @@ export class PiedraPapelTijeraComponent implements OnInit {
         this.msgs = [];
         this.msgs.push({ severity: 'warn', summary: condicion, detail: 'Nadie suma!' });
         break;
+      default:
+        this.msgs = [];
+        this.msgs.push({ severity: 'success', summary: condicion, detail: 'Sumaste 1 punto!' });
+        break;
     }
   }
-  
+  GuardarInformacionJuego(){
+    let rta: any;
+    let datos = {juego: 1, usuario: this.idJugador, nombre: 'ppt', jugados: this.jugados, ganados: this.ganados ,empatados: this.empatados, perdidos: this.perdidos };
+    this.miHttp.post('http://localhost/APITPJUEGOS/api-master/ActualizarJuegoUsuario', datos)
+      .toPromise()
+      .then(data => {
+        console.log(data);
+      })
+  }
+  TraerInformacionDeJuego(){
+    let rta: any;
+    let datos = {usuario: this.idJugador , juego: 1};
+    this.miHttp.post('http://localhost/APITPJUEGOS/api-master/DatosDeJuego', datos)
+    .toPromise()
+    .then(data => {
+      rta = data.json();
+      //console.log(data);
+      this.jugados = rta[0]["jugados"];
+      this.empatados = rta[0]["empatados"];
+      this.ganados = rta[0]["ganados"];
+      this.perdidos = rta[0]["perdidos"];
+    })
+  }
 }

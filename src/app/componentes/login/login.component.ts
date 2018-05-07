@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpModule, Http } from '@angular/http';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { JugadorService } from '../../servicios/jugador.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
   datos: any;
   mail: string;
   password: string;
-  constructor(private miHttp: Http, private route: Router) {
+  constructor(private miHttp: Http, private route: Router, private miJugador: JugadorService) {
     this.miHttp.get('http://localhost/APITPJUEGOS/api-master/traerTodosLosUsuarios')
       .toPromise()
       .then(data => {
@@ -44,6 +45,10 @@ export class LoginComponent implements OnInit {
         console.log(data.json());
         console.log("**");
         if (nombre != null) {
+          this.miJugador.SetNombre(nombre);
+          this.miJugador.SetApellido(rta[0]["apellido"]);
+          this.miJugador.SetId(rta[0]["id"]);
+          this.miJugador.SetApodo(rta[0]["apodoJugador"]);
           swal({
             title: 'Bienvenido ' + nombre,
             text: 'Accediendo a la plataforma de juegos!.',
