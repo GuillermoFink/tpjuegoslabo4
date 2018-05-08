@@ -6,6 +6,7 @@ import { Message } from 'primeng/components/common/api';
 import { TableModule } from 'primeng/table';
 import { JugadorService } from '../../servicios/jugador.service';
 import { HttpModule, Http } from '@angular/http';
+import { Quizz } from '../../clases/quizz';
 
 @Component({
   selector: 'app-quizz',
@@ -13,10 +14,17 @@ import { HttpModule, Http } from '@angular/http';
   styleUrls: ['./quizz.component.css']
 })
 export class QuizzComponent implements OnInit {
+  miQuizz: Quizz = new Quizz("1","1","1","1","1",1,"1");
+  miArrayDeQuizz: Quizz[];
+  
   ruta: string = "../../../assets/Imagenes/piedra.jpg";
-  constructor() { }
-
+  constructor() {
+    this.miArrayDeQuizz = this.miQuizz.ArrayDePreguntas();
+    console.log(this.miArrayDeQuizz);
+   }
+  
   ngOnInit() {
   }
+  
 
 }

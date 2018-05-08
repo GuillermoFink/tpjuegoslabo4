@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   mail: string;
   password: string;
   constructor(private miHttp: Http, private route: Router, private miJugador: JugadorService) {
-    this.miHttp.get('http://localhost/APITPJUEGOS/api-master/traerTodosLosUsuarios')
+    this.miHttp.get('lacuevadel10.16mb.com/API/traerTodosLosUsuarios')
       .toPromise()
       .then(data => {
         console.log(data.json());
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
     let rta: any;
     let nombre;
     let datos = { mail: this.mail, password: this.password };
-    this.miHttp.post('http://localhost/APITPJUEGOS/api-master/LoginUsuario', datos)
+    this.miHttp.post('lacuevadel10.16mb.com/API/LoginUsuario', datos)
       .toPromise()
       .then(data => {
         rta = data.json();

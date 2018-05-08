@@ -8,6 +8,7 @@ import {CardModule} from 'primeng/card';
 import {GrowlModule} from 'primeng/growl';
 import {Message} from 'primeng/components/common/api';
 import {TableModule} from 'primeng/table';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 @NgModule({
   imports: [
     CommonModule,
@@ -17,7 +18,8 @@ import {TableModule} from 'primeng/table';
     MessagesModule,
     CardModule,
     GrowlModule,
-    TableModule
+    TableModule,
+    ScrollPanelModule
     
   ],
   exports: [
@@ -28,7 +30,8 @@ import {TableModule} from 'primeng/table';
     MessagesModule,
     CardModule,
     GrowlModule,
-    TableModule
+    TableModule,
+    ScrollPanelModule
   ],
   declarations: []
 })

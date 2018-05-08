@@ -14,6 +14,10 @@ import { HttpModule, Http } from '@angular/http';
   styleUrls: ['./piedra-papel-tijera.component.css']
 })
 export class PiedraPapelTijeraComponent implements OnInit {
+  rutapc: string = "../../../assets/Imagenes/piedra.jpg";
+  rutaj1: string = "../../../assets/Imagenes/piedra.jpg";
+  eleccionP1: string = "";
+  eleccionPc: string = "";
   nombreJugador: string;
   apodoJugador: string;
   idJugador: number;
@@ -32,7 +36,7 @@ export class PiedraPapelTijeraComponent implements OnInit {
     this.apodoJugador = miJugador.GetApodo();
     this.idJugador = miJugador.GetId();
     console.log(this.miJugador);
-   this.TraerInformacionDeJuego();
+    this.TraerInformacionDeJuego();
   }
 
   ngOnInit() {
@@ -45,6 +49,8 @@ export class PiedraPapelTijeraComponent implements OnInit {
     )
   }
   Jugada(numero: number) {
+    this.eleccionP1 = "";
+    this.eleccionPc = "";
     console.log(numero);
     this.random = Math.floor(Math.random() * 3) + 1;
     document.getElementById('pcPiedra').classList.remove('w3-grayscale-max');
@@ -52,17 +58,21 @@ export class PiedraPapelTijeraComponent implements OnInit {
     document.getElementById('pcTijera').classList.remove('w3-grayscale-max');
     switch (this.random) {
       case 1:
+        this.eleccionPc = "../../../assets/Imagenes/piedra.jpg";
         document.getElementById('pcPiedra').classList.add('w3-grayscale-max');
         break;
       case 2:
+        this.eleccionPc = "../../../assets/Imagenes/papel.jpg";
         document.getElementById('pcPapel').classList.add('w3-grayscale-max');
         break;
       case 3:
+        this.eleccionPc = "../../../assets/Imagenes/tijera.jpg";
         document.getElementById('pcTijera').classList.add('w3-grayscale-max');
         break;
     }
     switch (numero) {
       case 1:
+        this.eleccionP1 = "../../../assets/Imagenes/piedra.jpg";
         if (this.random == 1) {
           this.jugados++;
           this.empatados++;
@@ -80,10 +90,11 @@ export class PiedraPapelTijeraComponent implements OnInit {
         }
         break;
       case 2:
+      this.eleccionP1 = "../../../assets/Imagenes/papel.jpg";
         if (this.random == 1) {
           this.jugados++;
           this.ganados++;
-          this.mensaje = "Ganaste!";
+          this.mensaje = "Ganador: " + this.apodoJugador + "!";
         }
         if (this.random == 2) {
           this.jugados++;
@@ -97,6 +108,7 @@ export class PiedraPapelTijeraComponent implements OnInit {
         }
         break;
       case 3:
+      this.eleccionP1 = "../../../assets/Imagenes/tijera.jpg";
         if (this.random == 1) {
           this.jugados++;
           this.perdidos++;
@@ -105,7 +117,7 @@ export class PiedraPapelTijeraComponent implements OnInit {
         if (this.random == 2) {
           this.jugados++;
           this.ganados++;
-          this.mensaje = "Ganaste!";
+          this.mensaje = "Ganador: " + this.apodoJugador + "!";
         }
         if (this.random == 3) {
           this.empatados++;
@@ -135,27 +147,27 @@ export class PiedraPapelTijeraComponent implements OnInit {
         break;
     }
   }
-  GuardarInformacionJuego(){
+  GuardarInformacionJuego() {
     let rta: any;
-    let datos = {juego: 1, usuario: this.idJugador, nombre: 'ppt', jugados: this.jugados, ganados: this.ganados ,empatados: this.empatados, perdidos: this.perdidos };
-    this.miHttp.post('http://localhost/APITPJUEGOS/api-master/ActualizarJuegoUsuario', datos)
+    let datos = { juego: 1, usuario: this.idJugador, nombre: 'ppt', jugados: this.jugados, ganados: this.ganados, empatados: this.empatados, perdidos: this.perdidos };
+    this.miHttp.post('lacuevadel10.16mb.com/API/ActualizarJuegoUsuario', datos)
       .toPromise()
       .then(data => {
         console.log(data);
       })
   }
-  TraerInformacionDeJuego(){
+  TraerInformacionDeJuego() {
     let rta: any;
-    let datos = {usuario: this.idJugador , juego: 1};
-    this.miHttp.post('http://localhost/APITPJUEGOS/api-master/DatosDeJuego', datos)
-    .toPromise()
-    .then(data => {
-      rta = data.json();
-      //console.log(data);
-      this.jugados = rta[0]["jugados"];
-      this.empatados = rta[0]["empatados"];
-      this.ganados = rta[0]["ganados"];
-      this.perdidos = rta[0]["perdidos"];
-    })
+    let datos = { usuario: this.idJugador, juego: 1 };
+    this.miHttp.post('lacuevadel10.16mb.com/API/DatosDeJuego', datos)
+      .toPromise()
+      .then(data => {
+        rta = data.json();
+        //console.log(data);
+        this.jugados = rta[0]["jugados"];
+        this.empatados = rta[0]["empatados"];
+        this.ganados = rta[0]["ganados"];
+        this.perdidos = rta[0]["perdidos"];
+      })
   }
 }
