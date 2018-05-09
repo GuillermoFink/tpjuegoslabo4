@@ -1,6 +1,7 @@
 import { Self } from "@angular/core";
 
 export class Quizz {
+    numero: number;
     imagen: string;
     pregunta: string;
     opcion1: string;
@@ -10,7 +11,8 @@ export class Quizz {
     correcta: number;
 
 
-    constructor(pregunta: string, opcion1: string, opcion2: string, opcion3: string, opcion4: string, correcta: number, imagen: string) {
+    constructor(numero: number,pregunta: string, opcion1: string, opcion2: string, opcion3: string, opcion4: string, correcta: number, imagen: string) {
+        this.numero = numero;
         this.imagen = imagen;
         this.pregunta = pregunta;
         this.opcion1 = opcion1;
@@ -23,42 +25,42 @@ export class Quizz {
 
 
     ArrayDePreguntas() {
-       let preg1 = new Quizz("¿Que naciones conforman el grupo A?",
+       let preg1 = new Quizz(1,"¿Que naciones conforman el grupo A?",
             "Rusia - Arabia Saudita - Egipto - Uruguay",
             "Rusia - Arabia Saudita - Mexico - Uruguay",
             "Rusia - Iran - Egipto - Uruguay",
             "Rusia - Uruguay - Egipto - Marruecos",
             1,
             "../../../assets/Imagenes/p1.jpg");
-       let preg2 = new Quizz("¿Cual es el estadio con mayor capacidad?",
+       let preg2 = new Quizz(2,"¿Cual es el estadio con mayor capacidad?",
             "San Petesburgo",
             "Rostov Arena",
             "Luzhniki",
             "Kalingrado",
             3,
             "../../../assets/Imagenes/p2.jpeg");
-       let preg3 = new Quizz("¿Como se llama la pelota del mundial?",
+       let preg3 = new Quizz(3,"¿Como se llama la pelota del mundial?",
             "Jabulani",
             "Tango",
             "Brazuca",
             "Telstar",
             4,
             "../../../assets/Imagenes/p3.jpg");
-       let preg4 = new Quizz("¿En que estadio se jugará la final del mundial?",
+       let preg4 = new Quizz(4,"¿En que estadio se jugará la final del mundial?",
             "Spartak",
             "Luzhniki",
             "San Petesburgo",
             "Samara Arena",
             2,
             "../../../assets/Imagenes/p4.jpg");
-       let preg5 = new Quizz("¿Que naciones conforman el grupo G?",
+       let preg5 = new Quizz(5,"¿Que naciones conforman el grupo G?",
             "Belgica - Panama - Tunez - Nigeria",
             "Inglaterra - Panama - Mexico - Suecia",
             "Belgica - Panama - Tunez - Inglaterra",
             "Belgica - Panama - Senegal - Suecia",
             3,
             "../../../assets/Imagenes/p5.jpg");
-       let preg6 = new Quizz("¿Quien es el goleador actual de la historia de los mundiales?",
+       let preg6 = new Quizz(6,"¿Quien es el goleador actual de la historia de los mundiales?",
             "Diego Armando Maradona",
             "Pele",
             "Miroslav Klose",
