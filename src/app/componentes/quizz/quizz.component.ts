@@ -25,6 +25,9 @@ export class QuizzComponent implements OnInit {
   
   ngOnInit() {
   }
-  
+  Respuesta(pregunta: Quizz, opcion: number){
+    console.log(pregunta.correcta);
+    console.log(opcion);
+  }
 
 }
