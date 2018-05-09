@@ -19,7 +19,7 @@ export class QuizzComponent implements OnInit {
   respondidas: number = 0;
   correctas: number = 0;
   fallidas: number = 0;
-  faltantes: number= 7;
+  faltantes: number= 10;
   promedio: number;
 
   nombreJugador: string;
@@ -59,9 +59,9 @@ export class QuizzComponent implements OnInit {
     this.ValidarRespuestas();
   }
   ValidarRespuestas(){
-    if (this.respondidas == 6){
+    if (this.respondidas == 10){
       //<<>
-      if (this.correctas > 5){
+      if (this.correctas > 7){
         this.jugados++;
         this.ganados++;
         swal(
@@ -70,18 +70,20 @@ export class QuizzComponent implements OnInit {
           'success'
         )
         this.GuardarInformacionJuego();
+        this.SubirPagina();
       }
-      if(this.correctas <= 4 && this.correctas > 2 ){
+      if(this.correctas <= 6 && this.correctas > 3 ){
         this.jugados++;
         this.perdidos++;
         swal(
-          'No esta tan mal',
-          'A ponerse al día con el mundial!',
+          'No alcanzo!',
+          'Pero no esta tan mal, a ponerse al día con el mundial!',
           'info'
         )
         this.GuardarInformacionJuego();
+        this.SubirPagina();
       }
-      if(this.correctas <=2 ){
+      if(this.correctas <= 3 ){
         this.jugados++;
         this.perdidos++;
         swal(
@@ -90,6 +92,7 @@ export class QuizzComponent implements OnInit {
           'error'
         )
         this.GuardarInformacionJuego();
+        this.SubirPagina();
       }
       
     }
@@ -115,6 +118,9 @@ export class QuizzComponent implements OnInit {
       .then(data => {
         console.log(data);
       })
+  }
+  SubirPagina(){
+    window.scroll(0,0);
   }
 
 }
