@@ -3,6 +3,10 @@ import { JuegoAdivina } from '../../clases/juego-adivina';
 import swal from 'sweetalert2';
 import { JugadorService } from '../../servicios/jugador.service';
 import { HttpModule, Http } from '@angular/http';
+import { MessageModule } from 'primeng/message';
+import { GrowlModule, Growl } from 'primeng/growl';
+import { Message } from 'primeng/components/common/api';
+import { TableModule } from 'primeng/table';
 
 @Component({
   selector: 'app-anagrama',
@@ -23,6 +27,9 @@ export class AnagramaComponent implements OnInit {
   jugados: number;
   ganados: number;
   perdidos: number;
+
+  mensaje: string;
+  msgs: Message[] = [];
 
   constructor(private miJugador: JugadorService, private miHttp: Http) {
     this.nombreJugador = miJugador.GetNombre();
@@ -47,21 +54,27 @@ export class AnagramaComponent implements OnInit {
     this.ganados++;
     this.oportunidades++;
     this.ocultarVerificar = true;
-    
+
     console.info("numero Secreto:", this.nuevoJuego.gano);
     if (this.nuevoJuego.verificar()) {
 
       //this.enviarJuego.emit(this.nuevoJuego);
       this.MostarMensaje("Sos un Genio!!!", true);
       this.nuevoJuego.numeroSecreto = 0;
+      swal(
+        'Ganaste!',
+        'En tan solo: '+this.oportunidades +' intentos',
+        'success'
+      )
 
     } else {
+      
       this.jugados++;
       this.perdidos++;
       let mensaje: string;
       switch (this.oportunidades) {
         case 1:
-          mensaje = "No, intento fallido, animo";
+          mensaje = "Intento fallido, animo";
           break;
         case 2:
           mensaje = "No,Te estaras Acercando???";
@@ -84,6 +97,8 @@ export class AnagramaComponent implements OnInit {
           break;
       }
       this.GuardarInformacionJuego();
+      this.msgs = [];
+      this.msgs.push({ severity: 'error', summary: "Numero Equivocado!", detail: mensaje+" Ayuda: "+" "+this.nuevoJuego.retornarAyuda() });
       this.MostarMensaje("#" + this.oportunidades + " " + mensaje + " ayuda :" + this.nuevoJuego.retornarAyuda());
 
 
@@ -103,7 +118,7 @@ export class AnagramaComponent implements OnInit {
     setTimeout(function () {
       x.className = x.className.replace("show", "");
       modelo.ocultarVerificar = false;
-    }, 3000);
+    }, 2000);
     console.info("objeto", x);
 
   }

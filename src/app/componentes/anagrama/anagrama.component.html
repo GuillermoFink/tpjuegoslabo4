@@ -1,4 +1,7 @@
+
 <app-menu></app-menu>
+
+<p-growl [(value)]="msgs"></p-growl>
 <div class="w3-center" style="margin-top: 5%;">
   <form name="juego">
 
@@ -19,16 +22,20 @@
       <p *ngIf="nuevoJuego.numeroSecreto!=0">
         <i class="fa fa-spinner fa-spin"></i>Esperando número</p>
     </h2>
-
+<div hidden>
     <h3 [hidden]="!nuevoJuego.gano">usted adivino el número</h3>
     <h3 [hidden]="nuevoJuego.gano">usted aún no gano </h3>
+</div>
+    
 
 
   </form>
 
 </div>
+<div hidden>
+    <div id="snackbar">{{Mensajes}}</div>
+</div>
 
-<div id="snackbar">{{Mensajes}}</div>
 <table class="w3-table-all w3-center">
   <tr>
     <th>Intentos</th>
