@@ -15,14 +15,14 @@ export class JuegoAdivina {
         }
     }
     public generarnumero() {
-        this.numeroSecreto = Math.floor((Math.random() * 100) + 1);
+        this.numeroSecreto = Math.floor((Math.random() * 10) + 1);
         console.info('numero Secreto:' + this.numeroSecreto);
         this.gano = false;
     }
     public retornarAyuda() {
         if (this.numeroIngresado < this.numeroSecreto) {
-            return "Falta";
+            return "Un poco más";
         }
-        return "Te pasate";
+        return "Un poco menos";
     }
 }

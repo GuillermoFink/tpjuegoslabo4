@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { JuegoAdivina } from '../../clases/juego-adivina';
+import swal from 'sweetalert2';
+import { JugadorService } from '../../servicios/jugador.service';
+import { HttpModule, Http } from '@angular/http';
 
 @Component({
   selector: 'app-anagrama',
@@ -13,7 +16,22 @@ export class AnagramaComponent implements OnInit {
   ocultarVerificar: boolean = false;
   Mensajes: string;
 
-  constructor() {
+  nombreJugador: string;
+  apodoJugador: string;
+  idJugador: number;
+  apellidoJugador: string;
+  jugados: number;
+  ganados: number;
+  perdidos: number;
+
+  constructor(private miJugador: JugadorService, private miHttp: Http) {
+    this.nombreJugador = miJugador.GetNombre();
+    this.apellidoJugador = miJugador.GetApellido();
+    this.apodoJugador = miJugador.GetApodo();
+    this.idJugador = miJugador.GetId();
+    console.log(this.miJugador);
+    this.TraerInformacionDeJuego();
+
     this.nuevoJuego.generarnumero();
     this.nuevoJuego.numeroIngresado = 0;
   }
@@ -25,8 +43,11 @@ export class AnagramaComponent implements OnInit {
     this.oportunidades = 0;
   }
   verificar() {
+    this.jugados++;
+    this.ganados++;
     this.oportunidades++;
     this.ocultarVerificar = true;
+    
     console.info("numero Secreto:", this.nuevoJuego.gano);
     if (this.nuevoJuego.verificar()) {
 
@@ -35,7 +56,8 @@ export class AnagramaComponent implements OnInit {
       this.nuevoJuego.numeroSecreto = 0;
 
     } else {
-
+      this.jugados++;
+      this.perdidos++;
       let mensaje: string;
       switch (this.oportunidades) {
         case 1:
@@ -58,9 +80,10 @@ export class AnagramaComponent implements OnInit {
           break;
 
         default:
-          mensaje = "Ya le erraste " + this.oportunidades + " veces";
+          mensaje = "Pifiaste " + this.oportunidades + " veces";
           break;
       }
+      this.GuardarInformacionJuego();
       this.MostarMensaje("#" + this.oportunidades + " " + mensaje + " ayuda :" + this.nuevoJuego.retornarAyuda());
 
 
@@ -83,6 +106,30 @@ export class AnagramaComponent implements OnInit {
     }, 3000);
     console.info("objeto", x);
 
+  }
+
+  TraerInformacionDeJuego() {
+    let rta: any;
+    let datos = { usuario: this.idJugador, juego: 2 };
+    this.miHttp.post('http://localhost/APITPJUEGOS/api-master/DatosDeJuego', datos)
+      .toPromise()
+      .then(data => {
+        rta = data.json();
+        //console.log(data);
+        this.jugados = rta[0]["jugados"];
+        this.ganados = rta[0]["ganados"];
+        this.perdidos = rta[0]["perdidos"];
+      })
+  }
+
+  GuardarInformacionJuego() {
+    let rta: any;
+    let datos = { juego: 2, usuario: this.idJugador, nombre: 'adivina', jugados: this.jugados, ganados: this.ganados, empatados: 0, perdidos: this.perdidos };
+    this.miHttp.post('http://localhost/APITPJUEGOS/api-master/ActualizarJuegoUsuario', datos)
+      .toPromise()
+      .then(data => {
+        console.log(data);
+      })
   }
 
 }
