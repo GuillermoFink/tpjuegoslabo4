@@ -1,8 +1,6 @@
 <app-menu></app-menu>
   <div class="ui-g">
-      <div class="ui-g-12">
-      </div>
-      <div class="ui-g">
+      
         <div class="ui-g-4">
           <p-card title="Piedra Papel o Tijera" subtitle="Piedra Papel o Tijera" [style]="{width: '360px'}" styleClass="ui-card-shadow">
             <p-header>
@@ -11,7 +9,7 @@
             <div>Clasico juego de la infancia, ¿Preparado para jugar con el azar?</div>
             <p-footer>
               <button pButton type="button" label="Jugar!" icon="fa-check" routerLink="/ppt"></button>
-              <button pButton type="button" label="Mis estadisticas" icon="fa-bar-chart" class="ui-button-warning"></button>
+              <button pButton type="button" label="Mis estadisticas" icon="fa-bar-chart" class="ui-button-warning" routerLink="/puntajes"></button>
               <button pButton type="button" icon="fa-info" class="ui-button-info" (click)="infoPpt()"></button>
             </p-footer>
           </p-card>
@@ -24,7 +22,7 @@
             <div>Ponte los anteojos y el sombrero del Dr. Gadjet y adivina el numero oculto!!</div>
             <p-footer class="ui-center">
               <button pButton type="button" label="Jugar!" icon="fa-check" routerLink="/anagrama"></button>
-              <button pButton type="button" label="Mis estadisticas" icon="fa-bar-chart" class="ui-button-warning"></button>
+              <button pButton type="button" label="Mis estadisticas" icon="fa-bar-chart" class="ui-button-warning" routerLink="/puntajes"></button>
               <button pButton type="button" icon="fa-info" class="ui-button-info" (click)="infoAdNum()"></button>
             </p-footer>
           </p-card>
@@ -34,15 +32,53 @@
             <p-header>
               <img src="Card" src="../../../assets/Imagenes/Quizz.jpg">
             </p-header>
-            <div>Entretenido juego de preguntas y respuestas, de contenido deportivo e interes general</div>
+            <div>Entretenida quizz sobre el próximo mundial de Rusia 2018</div>
             <p-footer>
               <button pButton type="button" label="Jugar!" icon="fa-check" routerLink="/quizz"></button>
-              <button pButton type="button" label="Mis estadisticas" icon="fa-bar-chart" class="ui-button-warning"></button>
+              <button pButton type="button" label="Mis estadisticas" icon="fa-bar-chart" class="ui-button-warning" routerLink="/puntajes"></button>
               <button pButton type="button" icon="fa-info" class="ui-button-info" (click)="infoQuiz()"></button>
             </p-footer>
           </p-card>
         </div>
-      </div>
+        <div class="ui-g-4">
+            <p-card title="Agilidad aritmetica" subtitle="AA" [style]="{width: '360px'}" styleClass="ui-card-shadow">
+              <p-header>
+                <img src="Card" src="../../../assets/Imagenes/agilidad.jpg">
+              </p-header>
+              <div>¿Podrás resolver las cuentas antes de que finalice el tiempo?</div>
+              <p-footer>
+                <button pButton type="button" label="Jugar!" icon="fa-check" routerLink="/quizz"disabled></button>
+                <button pButton type="button" label="Mis estadisticas" icon="fa-bar-chart" class="ui-button-warning" routerLink="/puntajes"disabled></button>
+                <button pButton type="button" icon="fa-info" class="ui-button-info" (click)="infoQuiz()"disabled></button>
+              </p-footer>
+            </p-card>
+          </div>
+          <div class="ui-g-4">
+              <p-card title="Anagrama!" subtitle="Anagrama" [style]="{width: '360px'}" styleClass="ui-card-shadow">
+                <p-header>
+                  <img src="Card" src="../../../assets/Imagenes/anagrama.jpg">
+                </p-header>
+                <div>A poner las letras en orden y formar las palabras!</div>
+                <p-footer>
+                  <button pButton type="button" label="Jugar!" icon="fa-check" routerLink="/quizz" disabled></button>
+                  <button pButton type="button" label="Mis estadisticas" icon="fa-bar-chart" class="ui-button-warning" routerLink="/puntajes" disabled></button>
+                  <button pButton type="button" icon="fa-info" class="ui-button-info" (click)="infoQuiz()" disabled></button>
+                </p-footer>
+              </p-card>
+            </div>
+            <div class="ui-g-4">
+                <p-card title="Ta-Te-Ti" subtitle="Ta-Te-Ti!" [style]="{width: '360px'}" styleClass="ui-card-shadow">
+                  <p-header>
+                    <img src="Card" src="../../../assets/Imagenes/tateti.jpg">
+                  </p-header>
+                  <div>Clasico juego de la infancia</div>
+                  <p-footer>
+                    <button pButton type="button" label="Jugar!" icon="fa-check" disabled></button>
+                    <button pButton type="button" label="Mis estadisticas" icon="fa-bar-chart" class="ui-button-warning" disabled></button>
+                    <button pButton type="button" icon="fa-info" class="ui-button-info" (click)="infoQuiz()" disabled></button>
+                  </p-footer>
+                </p-card>
+              </div>
     </div>
     <div *ngIf="ppt == true">
       <app-piedra-papel-tijera></app-piedra-papel-tijera>

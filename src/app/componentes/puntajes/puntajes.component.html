@@ -1,4 +1,51 @@
 <app-menu></app-menu>
-<p>
-  puntajes works!
-</p>
+<div class="ui-g">
+  <div class="ui-g-5">
+      <div class="w3-center">Mis puntos</div>
+    <p-table [value]="puntajeIndividual">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Juego</th>
+          <th>Jugados</th>
+          <th>Ganados</th>
+          <th>Empatados</th>
+          <th>Perdidos</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-puntos>
+        <tr>
+          <td>{{puntos.nombre}}</td>
+          <td>{{puntos.jugados}}</td>
+          <td>{{puntos.ganados}}</td>
+          <td>{{puntos.empatados}}</td>
+          <td>{{puntos.perdidos}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div class="ui-g-7">
+    <div class="w3-center">Tabla de todos los jugadores</div>
+    <p-table [value]="tablaPuntaje">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Jugador</th>
+          <th>Juego</th>
+          <th>Jugados</th>
+          <th>Ganados</th>
+          <th>Empatados</th>
+          <th>Perdidos</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-puntaje>
+        <tr>
+          <td>{{puntaje.apodoJugador}}</td>
+          <td>{{puntaje.nombre}}</td>
+          <td>{{puntaje.jugados}}</td>
+          <td>{{puntaje.ganados}}</td>
+          <td>{{puntaje.empatados}}</td>
+          <td>{{puntaje.perdidos}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
