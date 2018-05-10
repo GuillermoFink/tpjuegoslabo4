@@ -150,7 +150,7 @@ export class PiedraPapelTijeraComponent implements OnInit {
   GuardarInformacionJuego() {
     let rta: any;
     let datos = { juego: 1, usuario: this.idJugador, nombre: 'ppt', jugados: this.jugados, ganados: this.ganados, empatados: this.empatados, perdidos: this.perdidos };
-    this.miHttp.post('http://localhost/APITPJUEGOS/api-master/ActualizarJuegoUsuario', datos)
+    this.miHttp.post('http://lacuevadel10.16mb.com/API/ActualizarJuegoUsuario', datos)
       .toPromise()
       .then(data => {
         console.log(data);
@@ -159,7 +159,7 @@ export class PiedraPapelTijeraComponent implements OnInit {
   TraerInformacionDeJuego() {
     let rta: any;
     let datos = { usuario: this.idJugador, juego: 1 };
-    this.miHttp.post('http://localhost/APITPJUEGOS/api-master/DatosDeJuego', datos)
+    this.miHttp.post('http://lacuevadel10.16mb.com/API/DatosDeJuego', datos)
       .toPromise()
       .then(data => {
         rta = data.json();

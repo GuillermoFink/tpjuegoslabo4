@@ -31,7 +31,7 @@ export class PuntajesComponent implements OnInit {
   MostrarPuntajePorJugador(){
     let rta: any;
     let datos = { usuario: this.idJugador};
-    this.miHttp.post('http://localhost/APITPJUEGOS/api-master/PuntajePorJugador', datos)
+    this.miHttp.post('http://lacuevadel10.16mb.com/API/PuntajePorJugador', datos)
       .toPromise()
       .then(data => {
         rta = data.json();
@@ -41,7 +41,7 @@ export class PuntajesComponent implements OnInit {
       })
   }
   TraerPuntajes(){
-    this.miHttp.get('http://localhost/APITPJUEGOS/api-master/TodosLosPuntajes')
+    this.miHttp.get('http://lacuevadel10.16mb.com/API/TodosLosPuntajes')
       .toPromise()
       .then(data => {
         console.log(data.json());

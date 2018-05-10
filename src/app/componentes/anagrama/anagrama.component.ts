@@ -126,7 +126,7 @@ export class AnagramaComponent implements OnInit {
   TraerInformacionDeJuego() {
     let rta: any;
     let datos = { usuario: this.idJugador, juego: 2 };
-    this.miHttp.post('http://localhost/APITPJUEGOS/api-master/DatosDeJuego', datos)
+    this.miHttp.post('http://lacuevadel10.16mb.com/API/DatosDeJuego', datos)
       .toPromise()
       .then(data => {
         rta = data.json();
@@ -140,7 +140,7 @@ export class AnagramaComponent implements OnInit {
   GuardarInformacionJuego() {
     let rta: any;
     let datos = { juego: 2, usuario: this.idJugador, nombre: 'adivina', jugados: this.jugados, ganados: this.ganados, empatados: 0, perdidos: this.perdidos };
-    this.miHttp.post('http://localhost/APITPJUEGOS/api-master/ActualizarJuegoUsuario', datos)
+    this.miHttp.post('http://lacuevadel10.16mb.com/API/ActualizarJuegoUsuario', datos)
       .toPromise()
       .then(data => {
         console.log(data);
