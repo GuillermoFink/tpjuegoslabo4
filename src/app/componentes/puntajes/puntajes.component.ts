@@ -17,8 +17,10 @@ export class PuntajesComponent implements OnInit {
   puntajeIndividual: any;
   tablaPuntaje: any;
   data: any;
+  datosJugados: any;
   arrayPuntos: number[] = new Array();
   arrayLabels: string[] = new Array();
+  arrayJugados: number[] = new Array();
 
   constructor(private miJugador: JugadorService, private miHttp: Http) {
     this.nombreJugador = miJugador.GetNombre();
@@ -27,25 +29,6 @@ export class PuntajesComponent implements OnInit {
     this.idJugador = miJugador.GetId();
     this.puntajeIndividual = this.MostrarPuntajePorJugador();
     this.tablaPuntaje = this.TraerPuntajes();
-    this.data = {
-
-      datasets: [{
-        data: [
-          this.arrayPuntos
-        ],
-        backgroundColor: [
-          "#FF6384",
-          "#4BC0C0",
-          "#FFCE56",
-          "#E7E9ED",
-          "#36A2EB"
-        ],
-        label: 'My dataset'
-      }],
-      labels: [
-        this.arrayLabels
-      ]
-    }
   }
 
   ngOnInit() {
@@ -70,16 +53,69 @@ export class PuntajesComponent implements OnInit {
       .then(data => {
         console.log(data.json());
         this.tablaPuntaje = data.json();
-        this.CalcularChart();
+        this.CalcularChart("ppt");
+        this.CalcularChartJugados();
+        this.datosChart(this.arrayLabels,this.arrayPuntos);
+        this.datosChart1(this.arrayLabels,this.arrayJugados);
+        console.log("____");
+        console.log(this.datosJugados);
       })
   }
-  CalcularChart() {
+  CalcularChart(nombreJuego) {
     this.tablaPuntaje.forEach(element => {
       //console.log(element);
-      if(element.nombre == "ppt"){
+      if (element.nombre == nombreJuego) {
         this.arrayLabels.push(element.apodoJugador);
         this.arrayPuntos.push(element.ganados);
       }
     });
+  }
+  CalcularChartJugados() {
+    this.tablaPuntaje.forEach(element => {
+      //console.log(element);
+      if (element.nombre == "adivina") {
+        //this.arrayLabels.push(element.apodoJugador);
+        this.arrayJugados.push(element.ganados);
+      }
+    });
+  }
+  datosChart(labels, datos) {
+    this.data = {
+      labels:
+        //this.arrayLabels
+        labels
+      ,
+      datasets: [{
+        data:
+          datos
+        //this.arrayPuntos
+        ,
+        backgroundColor: [
+          "#FF6384",
+          "#4BC0C0",
+          "#FFCE56",
+        ],
+      }]
+    }
+  }
+
+  datosChart1(labels, datos) {
+    this.datosJugados = {
+      labels:
+        //this.arrayLabels
+        labels
+      ,
+      datasets: [{
+        data:
+          datos
+        //this.arrayPuntos
+        ,
+        backgroundColor: [
+          "#FF6384",
+          "#4BC000",
+          "#FFCE56",
+        ],
+      }]
+    }
   }
 }

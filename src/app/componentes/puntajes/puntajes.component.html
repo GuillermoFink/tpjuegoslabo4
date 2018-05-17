@@ -1,7 +1,7 @@
 <app-menu></app-menu>
 <div class="ui-g">
   <div class="ui-g-5">
-      <div class="w3-center">Mis puntos</div>
+    <div class="w3-center">Mis puntos</div>
     <p-table [value]="puntajeIndividual">
       <ng-template pTemplate="header">
         <tr>
@@ -49,4 +49,22 @@
     </p-table>
   </div>
 </div>
-<p-chart type="pie" [data]="data"></p-chart>
+
+<div class="ui-g">
+  <div class="ui-g-12 w3-center">
+    Estadisticas
+    </div>
+    <div class="ui-g-6 w3-center">
+      Piedra Papel o Tijera
+    </div>
+    <div class="ui-g-6 w3-center">
+      Adivina
+    </div>
+    <div class="ui-g-6">
+      <p-chart type="pie" [data]="data"></p-chart>
+    </div>
+    <div class="ui-g-6">
+      <p-chart type="pie" [data]="datosJugados"></p-chart>
+    </div>
+  
+</div>
