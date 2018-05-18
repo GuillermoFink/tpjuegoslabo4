@@ -10,6 +10,7 @@ import {Message} from 'primeng/components/common/api';
 import {TableModule} from 'primeng/table';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {ChartModule} from 'primeng/chart';
+import {SelectButtonModule} from 'primeng/selectbutton';
 @NgModule({
   imports: [
     CommonModule,
@@ -21,7 +22,8 @@ import {ChartModule} from 'primeng/chart';
     GrowlModule,
     TableModule,
     ScrollPanelModule,
-    ChartModule
+    ChartModule,
+    SelectButtonModule
     
   ],
   exports: [
@@ -34,7 +36,8 @@ import {ChartModule} from 'primeng/chart';
     GrowlModule,
     TableModule,
     ScrollPanelModule,
-    ChartModule
+    ChartModule,
+    SelectButtonModule
   ],
   declarations: []
 })

@@ -55,10 +55,20 @@
     Estadisticas
     </div>
     <div class="ui-g-6 w3-center">
-      Piedra Papel o Tijera
+      <div class="ui-g-12 w3-center">
+          Juegos ganados
+      </div>
+        <div class="ui-g-12 w3-center">
+            <p-selectButton [options]="items" [(ngModel)]="itemSelecto" (click)="UpdatePie()"></p-selectButton>
+        </div>
     </div>
     <div class="ui-g-6 w3-center">
-      Adivina
+      <div class="ui-g-12 w3-center">
+        Jugadores
+      </div>
+      <div class="ui-g-12 w3-center">
+
+      </div>
     </div>
     <div class="ui-g-6">
       <p-chart type="pie" [data]="data"></p-chart>

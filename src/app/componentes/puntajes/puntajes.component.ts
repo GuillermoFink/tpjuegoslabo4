@@ -3,6 +3,8 @@ import { JugadorService } from '../../servicios/jugador.service';
 import { HttpModule, Http } from '@angular/http';
 import { TableModule } from 'primeng/table';
 import { ChartModule } from 'primeng/chart';
+import {SelectButtonModule} from 'primeng/selectbutton';
+import {SelectItem} from 'primeng/api';
 
 @Component({
   selector: 'app-puntajes',
@@ -21,6 +23,8 @@ export class PuntajesComponent implements OnInit {
   arrayPuntos: number[] = new Array();
   arrayLabels: string[] = new Array();
   arrayJugados: number[] = new Array();
+  items: SelectItem[];
+  itemSelecto: any;
 
   constructor(private miJugador: JugadorService, private miHttp: Http) {
     this.nombreJugador = miJugador.GetNombre();
@@ -29,6 +33,13 @@ export class PuntajesComponent implements OnInit {
     this.idJugador = miJugador.GetId();
     this.puntajeIndividual = this.MostrarPuntajePorJugador();
     this.tablaPuntaje = this.TraerPuntajes();
+    this.items=[
+      {label: "PPT",value:"ppt"},
+      {label: "Adivina",value:"adivina"},
+      {label: "Quizz", value:"quizz"}
+    ]
+      
+    
   }
 
   ngOnInit() {
@@ -62,6 +73,8 @@ export class PuntajesComponent implements OnInit {
       })
   }
   CalcularChart(nombreJuego) {
+    this.arrayLabels = new Array();
+    this.arrayPuntos = new Array();
     this.tablaPuntaje.forEach(element => {
       //console.log(element);
       if (element.nombre == nombreJuego) {
@@ -80,6 +93,7 @@ export class PuntajesComponent implements OnInit {
     });
   }
   datosChart(labels, datos) {
+    this.data = new Array();
     this.data = {
       labels:
         //this.arrayLabels
@@ -94,6 +108,8 @@ export class PuntajesComponent implements OnInit {
           "#FF6384",
           "#4BC0C0",
           "#FFCE56",
+          "#BBCE56",
+          "#F00E56",
         ],
       }]
     }
@@ -117,5 +133,11 @@ export class PuntajesComponent implements OnInit {
         ],
       }]
     }
+  }
+
+  UpdatePie(){
+    console.log(this.itemSelecto);
+    this.CalcularChart(this.itemSelecto);
+    this.datosChart(this.arrayLabels,this.arrayPuntos);
   }
 }
