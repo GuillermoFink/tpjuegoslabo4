@@ -43,6 +43,10 @@ const config: Routes = [
   {
     path: "puntajes",
     component: PuntajesComponent
+  },
+  {
+    path: "agilidad",
+    component: AgilidadComponent
   }
 
 ]
